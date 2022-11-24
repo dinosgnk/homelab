@@ -1,0 +1,18 @@
+---
+# Network plugin
+kube_network_plugin: calico
+
+# Internal network for services (ClusterIP)
+kube_service_addresses: 10.233.0.0/18
+
+# Internal network for pods
+kube_pods_subnet: 10.0.0.0/18
+
+# Control plane scheduling (set to false to add NoSchedule taint)
+kubeadm_control_plane_schedulable: false
+
+# Kubernetes Dashboard
+dashboard_enabled: true
+
+# ArgoCD for GitOps
+argocd_enabled: true

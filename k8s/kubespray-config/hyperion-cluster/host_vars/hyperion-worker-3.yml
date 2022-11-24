@@ -1,0 +1,6 @@
+---
+node_taints:
+  - "node-role.kubernetes.io/infra=:NoSchedule"
+
+node_labels:
+  node-role.kubernetes.io/infra: ""

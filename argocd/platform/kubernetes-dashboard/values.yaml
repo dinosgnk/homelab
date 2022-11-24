@@ -1,0 +1,11 @@
+kong:
+  enabled: true
+  proxy:
+    http:
+      enabled: true
+
+api:
+  scaling:
+    replicas: 1
+
+    

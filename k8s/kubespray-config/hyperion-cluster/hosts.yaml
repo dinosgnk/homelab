@@ -1,0 +1,42 @@
+all:
+  hosts:
+    hyperion-master-1:
+      ansible_host: 192.168.2.200
+      ip: 192.168.2.200
+      access_ip: 192.168.2.200
+    hyperion-worker-1:
+      ansible_host: 192.168.2.210
+      ip: 192.168.2.210
+      access_ip: 192.168.2.210
+    hyperion-worker-2:
+      ansible_host: 192.168.2.211
+      ip: 192.168.2.211
+      access_ip: 192.168.2.211
+    hyperion-worker-3:
+      ansible_host: 192.168.2.212
+      ip: 192.168.2.212
+      access_ip: 192.168.2.212
+
+  children:
+    kube_control_plane:
+      hosts:
+        hyperion-master-1:
+
+    etcd:
+      hosts:
+        hyperion-master-1:
+
+    kube_node:
+      hosts:
+        hyperion-master-1:
+        hyperion-worker-1:
+        hyperion-worker-2:
+        hyperion-worker-3:
+
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+        
+    calico_rr:
+      hosts: {}

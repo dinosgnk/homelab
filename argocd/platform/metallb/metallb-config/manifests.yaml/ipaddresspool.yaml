@@ -1,0 +1,37 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: ingress
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.2.240/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: harbor
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.2.241/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: vault
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.2.242/32
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: dashboard
+  namespace: metallb-system
+spec:
+  addresses:
+    - 192.168.2.243/32
+
+
