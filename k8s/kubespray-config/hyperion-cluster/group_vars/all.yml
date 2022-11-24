@@ -1,0 +1,8 @@
+---
+# Ansible connection settings
+ansible_user: labadmin
+ansible_become: true
+ansible_become_method: sudo
+
+# Basic cluster settings
+cluster_name: hyperion-cluster
