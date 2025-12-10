@@ -12,20 +12,22 @@ server:
 
   dataStorage:
     enabled: true
-    size: 2Gi
-    storageClass: ""
+    size: 5Gi
+    storageClass: local-path
     accessMode: ReadWriteOnce
 
-  auditStorage:
-    enabled: true
-    size: 2Gi
-    storageClass: ""
-    accessMode: ReadWriteOnce
+  nodeSelector:
+    node-role.kubernetes.io/infra: ""
+  
+  tolerations:
+    - key: "node-role.kubernetes.io/infra"
+      operator: "Exists"
+      effect: "NoSchedule"
 
 ui:
   enabled: true
   serviceType: "LoadBalancer"
-  externalPort: 8200
+  externalPort: 443
 
 injector:
   enabled: true
@@ -40,6 +42,3 @@ injector:
   
   metrics:
     enabled: true
-
-csi:
-  enabled: false
