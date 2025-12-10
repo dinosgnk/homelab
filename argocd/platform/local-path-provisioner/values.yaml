@@ -1,0 +1,25 @@
+storageClass:
+  name: local-path
+  defaultClass: false
+  reclaimPolicy: Delete
+
+nodePathMap:
+  - node: DEFAULT_PATH_FOR_NON_LISTED_NODES
+    paths:
+      - /opt/local-path-provisioner
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 10m
+    memory: 32Mi
+
+nodeSelector:
+  node-role.kubernetes.io/infra: ""
+  
+tolerations:
+  - key: "node-role.kubernetes.io/infra"
+    operator: "Exists"
+    effect: "NoSchedule"

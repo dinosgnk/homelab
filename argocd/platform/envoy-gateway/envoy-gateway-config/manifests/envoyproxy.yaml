@@ -1,0 +1,17 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy
+  namespace: envoy-gateway-system
+spec:
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        pod:
+          nodeSelector:
+            node-role.kubernetes.io/infra: ""
+          tolerations:
+            - key: "node-role.kubernetes.io/infra"
+              operator: "Exists"
+              effect: "NoSchedule"

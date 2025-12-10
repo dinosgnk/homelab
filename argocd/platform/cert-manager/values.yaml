@@ -1,0 +1,51 @@
+global:
+  leaderElection:
+    namespace: cert-manager
+
+crds:
+  enabled: true
+  
+config:
+  apiVersion: controller.config.cert-manager.io/v1alpha1
+  kind: ControllerConfiguration
+  enableGatewayAPI: true
+
+nodeSelector:
+  node-role.kubernetes.io/infra: ""
+
+tolerations:
+  - key: "node-role.kubernetes.io/infra"
+    operator: "Exists"
+    effect: "NoSchedule"
+
+resources:
+  requests:
+    cpu: 10m
+    memory: 32Mi
+  limits:
+    memory: 128Mi
+
+webhook:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 128Mi
+
+# CA Injector configuration
+cainjector:
+  resources:
+    requests:
+      cpu: 10m
+      memory: 32Mi
+    limits:
+      memory: 128Mi
+
+  nodeSelector:
+    node-role.kubernetes.io/infra: ""
+
+  tolerations:
+    - key: "node-role.kubernetes.io/infra"
+      operator: "Exists"
+      effect: "NoSchedule"

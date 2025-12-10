@@ -3,15 +3,18 @@
 kube_network_plugin: calico
 
 # Internal network for services (ClusterIP)
+# TO BE DELETED
 kube_service_addresses: 10.233.0.0/18
 
 # Internal network for pods
+# TO BE DELETED
 kube_pods_subnet: 10.0.0.0/18
 
 # Control plane scheduling (set to false to add NoSchedule taint)
 kubeadm_control_plane_schedulable: false
 
 # Kubernetes Dashboard
+# TO BE DELETED (managed by argocd)
 dashboard_enabled: true
 
 # ArgoCD for GitOps
