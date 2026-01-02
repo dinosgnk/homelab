@@ -35,6 +35,7 @@ variable "k8s_cluster_vms" {
       disk_size_gb = number
       cpu_cores    = optional(number, 2)
       memory_mb    = optional(number, 4096)
+      node_name    = optional(string, "hypatia")
     }))
   })
 }

@@ -1,3 +1,7 @@
+locals {
+  datastore_id = "vm-data-${var.node_name}"
+}
+
 resource "proxmox_virtual_environment_file" "cloud_init" {
   node_name    = var.node_name
   datastore_id = var.cloud_init_datastore_id
@@ -27,6 +31,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
   agent {
     enabled = true
+    timeout = "180s"
   }
 
   cpu {
@@ -39,13 +44,13 @@ resource "proxmox_virtual_environment_vm" "vm" {
   }
 
   efi_disk {
-    datastore_id = var.datastore_id
+    datastore_id = local.datastore_id
     file_format  = "raw"
     type         = "4m"
   }
 
   disk {
-    datastore_id = var.datastore_id
+    datastore_id = local.datastore_id
     import_from  = var.ubuntu_image_id
     interface    = "scsi0"
     cache        = "none"
@@ -70,7 +75,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
       }
     }
 
-    datastore_id      = var.datastore_id
+    datastore_id      = local.datastore_id
     user_data_file_id = proxmox_virtual_environment_file.cloud_init.id
   }
 }
